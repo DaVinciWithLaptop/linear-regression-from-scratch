@@ -30,7 +30,20 @@ class LinearRegression:
 			raise ValueError("Solver must be 'ols' or 'gradient_descent'")
 
 	def _fit_ols(self, X_train, y_train):
-		pass
+		# n_samples = no. of samples in X_train
+		n_samples = X_train.shape[0]
+
+		# Adding the bias column :
+		# X_augmented vector = [1 x1 x2 x3 ... xn]
+		X_augmented = np.c_[np.ones((n_samples,1)), X_train]
+
+		# closed-formed formula :
+		# weights vector = [bias w1 w2 w3 ... wn]
+		weights = np.linalg.inv(X_augmented.T @ X_augmented) @ X_augmented.T @ y_train
+
+		#separate bias(intercept aka Beta_0) and weigths(coeficients aka Beta_n values)
+		self.bias = weights[0]
+		self.weights = weights[1:]
 
 	def _fit_gradient_descent(self, X_train, y_train):
 		pass
