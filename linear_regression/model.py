@@ -46,7 +46,27 @@ class LinearRegression:
 		self.weights = weights[1:]
 
 	def _fit_gradient_descent(self, X_train, y_train):
-		pass
+		
+		n_samples, n_features = X_train.shape
+
+		# initializing parameters
+		self.weights = np.zeros(n_features)
+		self.bias = 0
+
+		for _ in range(self.n_iterations):
+
+			# making predictions
+			y_pred = np.dot(X_train,self.weights) + self.bias
+
+			# calculate loss function gradients
+			dw = (2 / n_samples) * np.dot(X_train.T,(y_pred - y_train))
+			dw = (2 / n_samples) * np.sum(y_pred - y_train)
+
+			# updating weights, rule: W_new <= W_old - aplha * dj/dw
+			self.weights = self.weights - self.learning_rate * dw
+
+			# updating bias, rule: bias_new <= bias_old - aplha * dj/db
+			self.bias = self.bias - self.learning_rate * db
 	
 	def predict(self, X_test):
 		return np.dot(X_test, self.weights) + self.bias
