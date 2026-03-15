@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 
@@ -34,3 +35,33 @@ print("\nMSE:", mean_squared_error(y_test, gd_predictions))
 print("\nRMSE:", root_mean_squared_error(y_test, gd_predictions))
 print("\nMAE:", mean_absolute_error(y_test, gd_predictions))
 print("\nR2:", r2_score(y_test, gd_predictions))
+
+
+# OLS Visualization
+plt.figure(figsize=(8,6))
+
+plt.scatter(y_test, ols_predictions, alpha=0.7)
+
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+
+plt.title("OLS: Actual vs Predicted")
+
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color="red")
+
+plt.show()
+
+
+# Gradient Descent Visualization
+plt.figure(figsize=(8,6))
+
+plt.scatter(y_test, gd_predictions, alpha=0.7)
+
+plt.xlabel("Actual Values")
+plt.ylabel("Predicted Values")
+
+plt.title("Gradient Descent: Actual vs Predicted")
+
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color="orange")
+
+plt.show()
