@@ -60,7 +60,7 @@ class LinearRegression:
 
 			# calculate loss function gradients
 			dw = (2 / n_samples) * np.dot(X_train.T,(y_pred - y_train))
-			dw = (2 / n_samples) * np.sum(y_pred - y_train)
+			db = (2 / n_samples) * np.sum(y_pred - y_train)
 
 			# updating weights, rule: W_new <= W_old - aplha * dj/dw
 			self.weights = self.weights - self.learning_rate * dw
